@@ -1,0 +1,30 @@
+body {
+    background-color: #EFDECD;
+    color: #8E7962;
+    font-family: Arial;
+    margin: 0px;
+}
+header {
+    background-color: #605447;
+    color: white;
+    padding: 10px;
+    font-size: 12pt; 
+}
+main {
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+}
+footer {
+    background-color: #605447;
+    color: white;
+    font-size: 12pt; 
+    padding: 10px; 
+    font-style: italic; 
+    text-align: right;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
