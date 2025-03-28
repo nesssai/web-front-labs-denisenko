@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Денисенко Александра Юрьевна. Позиционирование</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../images/favicon-16x16.png">
+        <link rel="icon" href="../images/favicon-32x32.png">
+        <style>
+            div {
+                width: 300px;
+                height: 70px;
+                line-height: 70px;
+                text-align: center;
+                background-color: white;
+                border: 1px dotted darkgreen;
+                margin: 15px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .position-relative {
+                position: relative;
+                left: 150px;
+                top: -130px;
+                z-index: 0;
+            }
+
+            .position-relative:hover {
+                z-index: 2;
+            }
+
+            .position-absolute {
+                position: absolute;
+                left: 300px;
+                z-index: 0;
+            }
+
+            .position-absolute:hover {
+                width: 330px;
+                height: 90px;
+                line-height: 90px;
+                background-color: #2c4459;
+                color: white;
+                border: 4px dotted #338bc7;
+                box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.568);
+                z-index: 2;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 4
+            <hr>
+        </header>
+
+        <main>
+            <div>static</div>
+            <div>static</div>
+            <div class="position-relative">relative</div>
+            <div>static</div>
+            <div>static</div>
+            <div class="position-absolute">static</div>
+            <div>static</div>
+            <div>static</div>
+            <div>static</div>
+            <div>static</div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Денисенко Александра, ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
+</html>
