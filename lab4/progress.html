@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Денисенко Александра Юрьевна. Панель прогресса</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../images/favicon-16x16.png">
+        <link rel="icon" href="../images/favicon-32x32.png">
+        <style>
+            .progress-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 500px;
+            }
+
+            .progress-container {
+                background: white;
+                padding: 40px;
+                border-radius: 16px;
+                box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.132);
+                text-align: center;
+                width: 340px;
+            }
+
+            .progress-title {
+                color: #2c3e50;
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .progress-bar {
+                background-color: #e9ecef;
+                border-radius: 10px;
+                height: 20px;
+                margin: 30px 0;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .progress-fill {
+                background: linear-gradient(to right, #3498db, #2c3e50);
+                height: 100%;
+                width: 0;
+                transition: width 5s linear;
+            }
+
+            .hold-button {
+                background: linear-gradient(to right, #2c3e50, #3498db);
+                color: white;
+                border: none;
+                padding: 14px 32px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-family: 'Segoe UI', sans-serif;
+                font-size: 16px;
+                font-weight: 500;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
+                transition: 0.3s;
+                width: 100%;
+            }
+
+            .hold-button:hover {
+                box-shadow: 0 4px 12px rgba(0,0,0,0.44);
+            }
+
+            .hold-button:active {
+                box-shadow: none;
+            }
+
+            .progress-container:active .progress-fill {
+                width: 100%;
+                transition: width 5s linear;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 4
+            <hr>
+        </header>
+
+        <main>
+            <div class="progress-wrapper">
+                <div class="progress-container">
+                    <div class="progress-title">Степень прогресса</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <button class="hold-button">Нажмите и удерживайте</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Денисенко Александра, ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
+</html>
