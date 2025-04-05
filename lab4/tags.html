@@ -12,24 +12,229 @@
             main {
                 position: relative;
                 min-height: 550px;
-                padding: 20px;
             }
 
             .tag {
                 position: absolute;
-                padding: 8px 15px;
                 font-family: 'Arial', sans-serif;
                 font-weight: bold;
                 cursor: pointer;
-                transition: 0.3s;
                 white-space: nowrap;
             }
 
             .tag:hover {
-                transform: scale(1.8) rotate(0deg) !important;
+                transform: scale(1.8) !important;
                 text-shadow: 2px 2px 4px #febf23;
                 z-index: 999;
+                animation-play-state: paused !important;
             }
+
+            @keyframes float1 {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-25px) translateX(-25px); }
+            }
+ 
+            @keyframes float2 {
+                0%, 100% { transform: translateY(0); }
+                25% { transform: translateY(-43px) rotate(-70deg); }
+                75% { transform: translateX(43px) rotate(70deg); }
+            }
+
+            @keyframes float3 {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(67px) rotate(25deg); }
+                75% { transform: translateY(34px) rotate(-25deg); }
+            }
+
+            @keyframes float4 {
+                0%, 100% { transform: rotate(0deg); }
+                25% { transform: translateY(-43px) rotate(15deg); }
+                75% { transform: translateY(43px) rotate(-15deg); }
+            }
+
+            @keyframes float5 {
+                0% { transform: rotate(0deg) translateY(0); }
+                100% { transform: rotate(360deg) translateY(50px); }
+            }
+
+            @keyframes float6 {
+                0%, 100% { transform: rotate(0deg); }
+                25% { transform: translateX(-30px) rotate(10deg); }
+                75% { transform: translateX(30px) rotate(-10deg); }
+            }
+
+            @keyframes float7 {
+                0%, 100% { transform: rotate(0deg); }
+                25% { transform: translateY(-50px) rotate(30deg); }
+                75% { transform: translateY(50px) rotate(-30deg); }
+            }
+
+            @keyframes float8 {
+                0% { transform: translate(0,0); }
+                12% { transform: translate(-15px,55px) rotate(38deg); }
+                28% { transform: translate(40px,-33px) rotate(-41deg); }
+                44% { transform: translate(-27px,19px) rotate(27deg); }
+                62% { transform: translate(18px,-45px) rotate(-33deg); }
+                78% { transform: translate(-35px,28px) rotate(22deg); }
+                94% { transform: translate(12px,-17px) rotate(-9deg); }
+            }
+
+            @keyframes float9 {
+                0%, 100% { transform: rotate(0deg); }
+                25% { transform: translateY(-60px) rotate(25deg); }
+                75% { transform: translateY(60px) rotate(-25deg); }
+            }
+
+            @keyframes float10 {
+                0%,100% { transform: translate(0,0); }
+                13% { transform: translate(-28px,33px) rotate(-17deg); }
+                27% { transform: translate(19px,-27px) rotate(24deg); }
+                43% { transform: translate(35px,18px) rotate(-31deg); }
+                58% { transform: translate(-17px,-22px) rotate(19deg); }
+                74% { transform: translate(22px,29px) rotate(-14deg); }
+                89% { transform: translate(-31px,12px) rotate(27deg); }
+            }
+
+            @keyframes float11 {
+                0%, 100% { transform: rotate(0deg); }
+                25% { transform: translateY(-35px) rotate(12deg); }
+                75% { transform: translateY(35px) rotate(-12deg); }
+            }
+
+            @keyframes float12 {
+                0%, 100% { transform: rotate(0deg); }
+                25% { transform: translateX(-20px) rotate(8deg); }
+                75% { transform: translateX(20px) rotate(-8deg); }
+            }
+
+            @keyframes float13 {
+                0% { transform: translate(0,0); }
+                12% { transform: translate(15px,-20px) rotate(10deg); }
+                28% { transform: translate(-10px,30px) rotate(-15deg); }
+                44% { transform: translate(25px,10px) rotate(20deg); }
+                62% { transform: translate(-15px,-25px) rotate(-10deg); }
+                78% { transform: translate(10px,15px) rotate(5deg); }
+                94% { transform: translate(-5px,-10px); }
+            }
+
+            @keyframes float14 {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-30px) translateX(-30px); }
+            }
+
+            @keyframes float15 {
+                0% { transform: translate(0,0); }
+                10% { transform: translate(28px,-15px) rotate(30deg); }
+                25% { transform: translate(-18px,40px) rotate(-25deg); }
+                40% { transform: translate(35px,12px) rotate(15deg); }
+                55% { transform: translate(-30px,-18px) rotate(-35deg); }
+                70% { transform: translate(10px,25px) rotate(10deg); }
+                85% { transform: translate(-25px,-10px) rotate(-12deg); }
+                100% { transform: translate(0,0); }
+            }
+
+            @keyframes float16 {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-70px) translateX(-40px); }
+            }
+
+            @keyframes float17 {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-40px) translateX(-10px); }
+            }
+
+            @keyframes float18 {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px) translateX(-50px); }
+            }
+
+            @keyframes float19 {
+                0%,100% { transform: translate(0,0); }
+                7% { transform: translate(38px,-12px) rotate(-38deg); }
+                19% { transform: translate(-21px,47px) rotate(29deg); }
+                35% { transform: translate(14px,-21px) rotate(-14deg); }
+                50% { transform: translate(-33px,19px) rotate(43deg); }
+                67% { transform: translate(27px,38px) rotate(-27deg); }
+                83% { transform: translate(-14px,-29px) rotate(19deg); }
+                96% { transform: translate(22px,13px) rotate(-8deg); }
+            }
+
+            @keyframes float20 {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-35px) translateX(10px); }
+            }
+
+            @keyframes float21 {
+                0%, 100% { transform: translateY(0) rotate(0deg); }
+                25% { transform: translateY(-20px) rotate(10deg); }
+                75% { transform: translateY(20px) rotate(-10deg); }
+            }
+
+            @keyframes float22 {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-40px); }
+            }
+
+            @keyframes float23 {
+                0%, 100% { transform: rotate(0deg); }
+                25% { transform: translateY(-30px) rotate(12deg); }
+                75% { transform: translateY(30px) rotate(-12deg); }
+            }
+
+            @keyframes float24 {
+                0%, 100% { transform: rotate(0deg); }
+                25% { transform: translateY(-30px) rotate(65deg); }
+                75% { transform: translateY(25px) rotate(-65deg); }
+            }
+
+            @keyframes float25 {
+                0%, 100% { transform: translate(0, 0); }
+                25% { transform: translate(40px, -55px); }
+                50% { transform: translate(20px, 60px); }
+                75% { transform: translate(-30px, -40px); }
+            }
+
+            @keyframes float26 {
+                0%, 100% { transform: translateY(0) rotate(0deg); }
+                20%, 80% { transform: translateY(-35px) rotate(12deg); }
+                50% { transform: translateY(25px) rotate(-8deg) }
+            }
+
+            @keyframes float27 {
+                0%, 100% { transform: translateY(0); }
+                15% { transform: translateY(-80px) rotate(25deg); }
+                35% { transform: translateY(10px) rotate(-10deg); }
+                65% { transform: translateY(-50px) rotate(15deg); }
+                85% { transform: translateY(20px) rotate(-5deg); }
+            }
+
+            .tag:nth-child(1) { animation: float1 14s infinite; }
+            .tag:nth-child(2) { animation: float2 12s infinite; }
+            .tag:nth-child(3) { animation: float3 13s infinite; }
+            .tag:nth-child(4) { animation: float4 15s infinite; }
+            .tag:nth-child(5) { animation: float5 11s infinite; }
+            .tag:nth-child(6) { animation: float6 13s infinite; }
+            .tag:nth-child(7) { animation: float7 12s infinite; }
+            .tag:nth-child(8) { animation: float8 14s infinite; }
+            .tag:nth-child(9) { animation: float9 10s infinite; }
+            .tag:nth-child(10) { animation: float10 12s infinite; }
+            .tag:nth-child(11) { animation: float11 14s infinite; }
+            .tag:nth-child(12) { animation: float12 13s infinite; }
+            .tag:nth-child(13) { animation: float13 14s infinite; }
+            .tag:nth-child(14) { animation: float14 12s infinite; }
+            .tag:nth-child(15) { animation: float15 13s infinite; }
+            .tag:nth-child(16) { animation: float16 15s infinite; }
+            .tag:nth-child(17) { animation: float17 10s infinite; }
+            .tag:nth-child(18) { animation: float18 13s infinite; }
+            .tag:nth-child(19) { animation: float19 15s infinite; }
+            .tag:nth-child(20) { animation: float20 14s infinite; }
+            .tag:nth-child(21) { animation: float21 11s infinite; }
+            .tag:nth-child(22) { animation: float22 12s infinite; }
+            .tag:nth-child(23) { animation: float23 14s infinite; }
+            .tag:nth-child(24) { animation: float24 13s infinite; }
+            .tag:nth-child(25) { animation: float25 14s infinite; }
+            .tag:nth-child(26) { animation: float26 12s infinite; }
+            .tag:nth-child(27) { animation: float27 13s infinite; }
         </style>
     </head>
     <body>
@@ -58,7 +263,7 @@
             <span class="tag" style="top: 62%; left: 63%; font-size: 32px; color: #50342C; transform: rotate(35deg);">Ранг</span>
             <span class="tag" style="top: 72%; left: 33%; font-size: 28px; color: #9E9E9E; transform: rotate(-45deg);">Бой с друзьями</span>
             <span class="tag" style="top: 12%; left: 67%; font-size: 35px; color: #009888; transform: rotate(-9deg);">Грифф</span>
-            <span class="tag" style="top: 58%; left: 12%; font-size: 28px; color: 526EFF; transform: rotate(8deg);">Пауэр-пойнты</span>
+            <span class="tag" style="top: 58%; left: 12%; font-size: 28px; color: #526EFF; transform: rotate(8deg);">Пауэр-пойнты</span>
             <span class="tag" style="top: 43%; left: 87%; font-size: 38px; color: #D40C00; transform: rotate(4deg);">Ульта</span>
             <span class="tag" style="top: 68%; left: 48%; font-size: 30px; color: #FFCD00; transform: rotate(-11deg);">Гиперзаряд</span>
             <span class="tag" style="top: 5%; left: 15%; font-size: 48px; color: #FF69B4; transform: rotate(-25deg);">Финкс</span>
