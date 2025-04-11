@@ -29,7 +29,7 @@
                 alert (hello);
             }
 
-            function showDivision() {
+            function showSub() {
                 let inputA = document.getElementById('numberA');
                 let inputB = document.getElementById('numberB');
 
@@ -47,6 +47,53 @@
                 let b = parseInt(inputB.value);
                 let result = a * b;
                 alert ('Произведение ' + a + ' и ' + b +' равно ' + result);
+            }
+
+            function showDiv() {
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+
+                if (isNaN(a)) {
+                    alert('Введите числовое значение в первое поле');
+                    inputA.focus();
+                    inputA.select();
+                    inputA.style.color = 'red';
+                    inputA.style.borderColor = 'red';
+                    return;
+                } else {
+                    inputA.style.color = '';
+                    inputA.style.borderColor = '';
+                }
+
+                if (isNaN(b)) {
+                    alert('Введите числовое значение во второе поле');
+                    inputB.focus();
+                    inputB.select();
+                    inputB.style.color = 'red';
+                    inputB.style.borderColor = 'red';
+                    return;
+                } else {
+                    inputB.style.color = '';
+                    inputB.style.borderColor = '';
+                }
+
+                if (b == 0) {
+                    alert('На ноль делить нельзя!');
+                    inputB.focus();
+                    inputB.select();
+                    inputB.style.color = 'red';
+                    inputB.style.borderColor = 'red';
+                    return;
+                } else {
+                    inputA.style.color = '';
+                    inputA.style.borderColor = '';
+                }
+
+                let result = a / b;
+                alert(a + " / " + b + " = " + result);
             }
         </script>
         <style>
@@ -78,11 +125,14 @@
             <div class="message" onclick="showSum()">
                 Найти сумму чисел
             </div>
-            <div class="message" onclick="showDivision()">
+            <div class="message" onclick="showSub()">
                 Найти разность чисел
             </div>
             <div class="message" onclick="showMultiplication()">
                 Найти произведение чисел
+            </div>
+            <div class="message" onclick="showDiv()">
+                Найти отношение чисел
             </div>
             <div class="message" onclick="showAuthor()">
                 Узнать, кто автор страницы
