@@ -28,6 +28,26 @@
                 let hello = 'Приветствую вас на моей странице! (✿◠‿◠) \nПомните, падение - это не провал. \nПровал - это провал. \nПадение - это когда упал.';
                 alert (hello);
             }
+
+            function showDivision() {
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+                let result = a - b;
+                alert('Разность ' + a + ' и ' + b + ' равна ' + result);
+            }
+
+            function showMultiplication() {
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
+
+                let a = parseInt(inputA.value);
+                let b = parseInt(inputB.value);
+                let result = a * b;
+                alert ('Произведение ' + a + ' и ' + b +' равно ' + result);
+            }
         </script>
         <style>
             .message {
@@ -57,6 +77,12 @@
 
             <div class="message" onclick="showSum()">
                 Найти сумму чисел
+            </div>
+            <div class="message" onclick="showDivision()">
+                Найти разность чисел
+            </div>
+            <div class="message" onclick="showMultiplication()">
+                Найти произведение чисел
             </div>
             <div class="message" onclick="showAuthor()">
                 Узнать, кто автор страницы
