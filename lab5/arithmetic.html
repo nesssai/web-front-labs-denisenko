@@ -15,6 +15,16 @@
                 let result = a + b;
                 alert ('Сумма ' + a + ' и ' + b +' равна ' + result);
             }
+
+            function showAuthor() {
+                let author = 'Автора страницы: \nДенисенко Александра Юрьевна';
+                alert (author);
+            }
+
+            function showHello() {
+                let hello = 'Приветствую вас на моей странице! (✿◠‿◠) \nПомните, падение - это не провал. \nПровал - это провал. \nПадение - это когда упал.';
+                alert (hello);
+            }
         </script>
         <style>
             .message {
@@ -33,7 +43,7 @@
         </style>
     </head>
     <body>
-        <header>
+        <header onclick="showAuthor()" style="cursor: pointer;">
             НГТУ, ФБ, Лабораторная работа 5
             <hr>
         </header>
@@ -42,12 +52,12 @@
             <div class="message" onclick="showSum()">
                 Сколько будет 5154+7891?
             </div>
-            <div class="message">
+            <div class="message" onclick="showAuthor()">
                 Узнать, кто автор страницы
             </div>
         </main>
 
-        <footer>
+        <footer ondblclick="showHello()" style="cursor: pointer;">
             <hr>
             &copy; Денисенко Александра, ФБИ-31, 2 курс, 2025
         </footer>
