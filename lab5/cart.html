@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Денисенко Александра Юрьевна. Корзина</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../images/favicon-16x16.png">
+        <link rel="icon" href="../images/favicon-32x32.png">
+        <script>
+            function calculate() {
+                const prices = [135, 105, 110, 143, 70];
+                let total = 0;
+
+                let input1 = document.getElementById('item1');
+                let input2 = document.getElementById('item2');
+                let input3 = document.getElementById('item3');
+                let input4 = document.getElementById('item4');
+                let input5 = document.getElementById('item5');
+
+                let quantity1 = parseInt(input1.value);
+                if (isNaN(quantity1)) {
+                    quantity1 = 0;
+                }
+                let quantity2 = parseInt(input2.value);
+                if (isNaN(quantity2)) {
+                    quantity2 = 0;
+                }
+                let quantity3 = parseInt(input3.value);
+                if (isNaN(quantity3)) {
+                    quantity3 = 0;
+                }
+                let quantity4 = parseInt(input4.value);
+                if (isNaN(quantity4)) {
+                    quantity4 = 0;
+                }
+                let quantity5 = parseInt(input5.value);
+                if (isNaN(quantity5)) {
+                    quantity5 = 0;
+                }
+
+                total += prices[0] * quantity1;
+                total += prices[1] * quantity2;
+                total += prices[2] * quantity3;
+                total += prices[3] * quantity4;
+                total += prices[4] * quantity5;
+
+                document.getElementById('total').textContent = 'Общая цена: ' + total + ' р';
+            }
+
+            function clearCart() {
+                document.getElementById('item1').value = '';
+                document.getElementById('item2').value = '';
+                document.getElementById('item3').value = '';
+                document.getElementById('item4').value = '';
+                document.getElementById('item5').value = '';
+                document.getElementById('total').textContent = '';
+            }
+        </script>
+        <style>
+            h2 {
+                text-align: center;
+                font-size: 22pt;
+            }
+
+            .container {
+                font-family: 'Segoe UI', sans-serif;
+                max-width: 300px;
+                margin: 20px auto;
+                padding: 15px;
+                border: 2px solid #2e506c; 
+                border-radius: 16px;
+                box-shadow: 0px 8px 14px #3498db4d;
+            }
+
+            .item {
+                margin-bottom: 15px;
+                margin-right: 12px;
+                font-size: 12pt;
+            }
+
+            input {
+                width: 100%;
+                padding: 5px;
+                margin-top: 7px;
+            }
+
+            button {
+                width: 100%;
+                padding: 10px;
+                background: linear-gradient(to right, #3498db, #2c3e50);
+                color: white;
+                border: none;
+                border-radius: 16px;
+                margin-top: 7px;
+                font-size: 12pt;
+            }
+
+            #total {
+                margin-top: 10px;
+                font-weight: bold;
+                font-size: 12pt;
+                color: #de3749;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5
+            <hr>
+        </header>
+
+        <main>
+            <div class="container">
+                <h2>Корзина товаров</h2>
+        
+                <div class="item">
+                    <div>ЧЕРНОГОЛОВКА Кола (135р/шт)</div>
+                    <input type="number" min="0" id="item1" placeholder="Сколько газировки выдержит твой желудок?">
+                </div>
+
+                <div class="item">
+                    <div>Драже M&M's с арахисом (105р/шт)</div>
+                    <input type="number" min="0" id="item2" placeholder="Сколько M&M's ты съешь за один присест?">
+                </div>
+
+                <div class="item">
+                    <div>Яйцо Kinder Сюрприз (110р/шт)</div>
+                    <input type="number" min="0" id="item3" placeholder="Сколько киндеров тебе нужно для счастья?">
+                </div>
+
+                <div class="item">
+                    <div>Молоко Простоквашино (143р/шт)</div>
+                    <input type="number" min="0" id="item4" placeholder="Введи число, пока не убежало">
+                </div>
+
+                <div class="item">
+                    <div>Йогурт Даниссимо (70р/шт)</div>
+                    <input type="number" min="0" id="item5" placeholder="Сколько йогуртов для твоего перекуса?">
+                </div>
+
+                <button onclick="calculate()">Рассчитать</button>
+                <button onclick="clearCart()">Очистить</button>
+                <div id="total"></div>
+            </div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Денисенко Александра, ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
+</html>
