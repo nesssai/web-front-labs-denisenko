@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Денисенко Александра Юрьевна. Объект «событие»</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../images/favicon-16x16.png">
+        <link rel="icon" href="../images/favicon-32x32.png">
+        <style>
+            main {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #block {
+                width: 300px;
+                height: 200px;
+                border: 2px solid #4A5568;
+                border-radius: 0;
+                background: #f8fafc;
+                cursor: crosshair;
+                font-family: 'Segoe UI', sans-serif;
+                padding: 20px;
+                font-size: 16px;
+                color: #2d3748;
+            }
+          </style>
+          <script>
+            function showCoords() {
+                let x = this.event.x;
+                let y = this.event.y;
+                let div = document.getElementById('block');
+                let ctrlText = '';
+                let altText = '';
+                let shiftText = '';
+
+                div.style.color = '#2d3748';
+                div.style.borderColor = '#4A5568';
+                div.style.backgroundColor = '#f8fafc';
+
+                if (this.event.ctrlKey) {
+                    div.style.color = 'red';
+                    div.style.borderColor = '#3ca181';
+                    div.style.backgroundColor = '#f4dfb2';
+                    ctrlText = '<br>Нажата клавиша <b>Ctrl</b>';
+                }
+
+                if (this.event.altKey) {
+                    div.style.color = 'white';
+                    div.style.borderColor = '#1c1d22';
+                    div.style.backgroundColor = '#dc88d3';
+                    altText = '<br>Нажата клавиша <b>Alt</b>';
+                }
+
+                if (this.event.shiftKey) {
+                    div.style.color = '#442022';
+                    div.style.borderColor = '#442022';
+                    div.style.backgroundColor = '#e9bfcb';
+                    shiftText = '<br>Нажата клавиша <b>Shift</b>';
+                }
+
+                div.innerHTML = '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px' + ctrlText + altText + shiftText;
+            }
+          </script>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5
+            <hr>
+        </header>
+
+        <main>
+            <div id="block" onmousemove="showCoords()"></div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Денисенко Александра, ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
+</html>
