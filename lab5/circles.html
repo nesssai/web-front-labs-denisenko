@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Денисенко Александра Юрьевна. Скрытие кругов</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../images/favicon-16x16.png">
+        <link rel="icon" href="../images/favicon-32x32.png">
+        <style>
+            main {
+                position: relative;
+                min-height: 500px;
+            }
+
+            button {
+                font-size: 16pt;
+                font-family: 'Segoe UI', sans-serif;
+                cursor: pointer
+            }
+    
+            .circle {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-weight: bold;
+                font-size: 40px;
+                transition: all 0.5s;
+                cursor: pointer
+            }
+
+            .circle.hidden {
+                width: 0;
+                height: 0;
+                opacity: 0;
+            }
+    
+            .circle:nth-child(1) { top: 15%; left: 20%; }
+            .circle:nth-child(2) { top: 25%; left: 70%; }
+            .circle:nth-child(3) { top: 60%; left: 40%; }
+            .circle:nth-child(4) { top: 45%; left: 85%; }
+            .circle:nth-child(5) { top: 75%; left: 15%; }
+            .circle:nth-child(6) { top: 10%; left: 55%; }
+            .circle:nth-child(7) { top: 35%; left: 30%; }
+            .circle:nth-child(8) { top: 80%; left: 65%; }
+            .circle:nth-child(9) { top: 50%; left: 5%; }
+            .circle:nth-child(10) { top: 5%; left: 90%; }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5
+            <hr>
+        </header>
+
+        <main>
+            <div class="circle" style="background-color: #fc4444;">1</div>
+            <div class="circle" style="background-color: #39b8ff;">2</div>
+            <div class="circle" style="background-color: #bff374;">3</div>
+            <div class="circle" style="background-color: #ffd231;">4</div>
+            <div class="circle" style="background-color: #6b64d4;">5</div>
+            <div class="circle" style="background-color: #3feee7;">6</div>
+            <div class="circle" style="background-color: #ff8a19;">7</div>
+            <div class="circle" style="background-color: #fd6ac2;">8</div>
+            <div class="circle" style="background-color: #a97a5c;">9</div>
+            <div class="circle" style="background-color: teal;">10</div>
+
+            <button id="resetButton">Восстановить круги</button>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Денисенко Александра, ФБИ-31, 2 курс, 2025
+        </footer>
+
+        <script>
+            const circles = document.querySelectorAll('.circle');
+
+            circles.forEach(circle => {
+                circle.addEventListener('click', () => {
+                    circle.classList.add('hidden');
+                });
+            });
+
+            document.getElementById('resetButton').addEventListener('click', () => {
+                circles.forEach(circle => {
+                    circle.classList.remove('hidden');
+                });
+            });
+        </script>
+    </body>
+</html>
