@@ -44,6 +44,12 @@
                 document.getElementById('invertOutput').innerText = invert;
                 document.getElementById('invertImage').style.filter = 'invert(' + invert + ')';
             }
+
+            function saturateChange() {
+                saturate = document.getElementById('saturateValue').value + '%';
+                document.getElementById('saturateOutput').innerText = saturate;
+                document.getElementById('saturateImage').style.filter = 'saturate(' + saturate + ')';
+            }
         </script>
         <style>
             .text {
@@ -107,6 +113,13 @@
                 <span id="invertOutput"></span>
             </div>
             <div><img src="picture3.jpg" id="invertImage" class="size-image"></div>
+
+            <div class="text">
+                Фильтр saturate:
+                <input type="range" min="0" max="500" value="100" oninput="saturateChange()" id="saturateValue">
+                <span id="saturateOutput"></span>
+            </div>
+            <div><img src="picture4.jpg" id="saturateImage" class="size-image"></div>
         </main>
 
         <footer>
