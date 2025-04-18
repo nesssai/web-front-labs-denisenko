@@ -38,6 +38,12 @@
                 document.getElementById('hueRotateOutput').innerText = hueRotate;
                 document.getElementById('hueRotateImage').style.filter = 'hue-rotate(' + hueRotate + ')';
             }
+
+            function invertChange() {
+                let invert = document.getElementById('invertValue').value + '%';
+                document.getElementById('invertOutput').innerText = invert;
+                document.getElementById('invertImage').style.filter = 'invert(' + invert + ')';
+            }
         </script>
         <style>
             .text {
@@ -94,6 +100,13 @@
                 <span id="hueRotateOutput"></span>
             </div>
             <div><img src="picture2.jpg" id="hueRotateImage" class="size-image"></div>
+
+            <div class="text">
+                Фильтр invert:
+                <input type="range" min="0" max="100" value="0" oninput="invertChange()" id="invertValue">
+                <span id="invertOutput"></span>
+            </div>
+            <div><img src="picture3.jpg" id="invertImage" class="size-image"></div>
         </main>
 
         <footer>
