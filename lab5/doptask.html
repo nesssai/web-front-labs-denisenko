@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Денисенко Александра Юрьевна. Дополнительное задание</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../images/favicon-16x16.png">
+        <link rel="icon" href="../images/favicon-32x32.png">
+        <style>
+            .size-image {
+                width: 1300px;
+                height: 700px;
+                object-fit: cover;
+                cursor: pointer;
+            }
+
+            #filter-info {
+                margin-top: 10px;
+                font-family: 'Segoe UI', sans-serif;
+                font-size: 14pt;
+                color: #2d3436;
+            }
+
+            .help {
+                margin-bottom: 10px;
+                color: #2d3436;
+                font-family: 'Segoe UI', sans-serif;
+                font-size: 12pt;
+                line-height: 1.5;
+            }
+
+            .no-margin {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 5
+            <hr>
+        </header>
+
+        <main>
+            <div class="help">
+                <b>Перемещайте курсор горизонтально по изображению для изменения интенсивности эффекта</b>
+                <ul class="no-margin">
+                    <li>По умолчанию при наведение курсором мыши на картинку: фильтр размытия (Blur)</li>
+                    <li>Зажмите Ctrl для чёрно-белого фильтра (Grayscale)</li>
+                    <li>Зажмите Alt для изменения цвета изображения в зависимости от заданного угла (Hue-rotate)</li>
+                    <li>Зажмите Shift для регулировки яркости (Brightness)</li>
+                </ul>
+            </div>
+
+            <div><img src="hahahihi.jpg" class="size-image"></div>
+
+            <div id="filter-info"></div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Денисенко Александра, ФБИ-31, 2 курс, 2025
+        </footer>
+
+        <script>
+            const image = document.querySelector('.size-image');
+            const filterInfo = document.getElementById('filter-info');
+
+            const filters = {
+                normal: { name: 'blur', min: 0, max: 20, unit: 'px' },
+                ctrl: { name: 'grayscale', min: 0, max: 100, unit: '%' },
+                alt: { name: 'hue-rotate', min: 0, max: 360, unit: 'deg' },
+                shift: { name: 'brightness', min: 0, max: 500, unit: '%' }
+            };
+
+            function updateFilter() {
+                const rect = image.getBoundingClientRect();
+                const xPosition = event.clientX - rect.left;
+                const percentage = xPosition / rect.width;
+                
+                let currentFilter = filters.normal;
+                if (event.ctrlKey) currentFilter = filters.ctrl;
+                else if (event.altKey) currentFilter = filters.alt;
+                else if (event.shiftKey) currentFilter = filters.shift;
+
+                const value = (percentage * currentFilter.max).toFixed();
+                image.style.filter = currentFilter.name + '(' + value + currentFilter.unit + ')';
+                filterInfo.textContent = 'Фильтр: ' + currentFilter.name + '(' + value + currentFilter.unit + ')';
+            }
+
+            function resetFilter() {
+                image.style.filter = 'none';
+                filterInfo.textContent = '';
+            }
+
+            image.addEventListener('mousemove', updateFilter);
+            image.addEventListener('mouseleave', resetFilter);
+        </script>
+    </body>
+</html>
