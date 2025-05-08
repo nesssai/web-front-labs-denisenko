@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Денисенко Александра Юрьевна. Дополнительное задание</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../images/favicon-16x16.png">
+        <link rel="icon" href="../images/favicon-32x32.png">
+        <style>
+            .chart-container {
+                display: flex;
+                height: 400px;
+                align-items: flex-end;
+                gap: 3px;
+                margin: 20px 0;
+                padding: 10px 20px;
+                border: 1px solid #e2eaec;
+                border-radius: 10px;
+                background: #f8f9fa;
+            }
+    
+            .bar {
+                width: 40px;
+                background-color: #79c0fa;
+                position: relative;
+                transition: background-color 0.5s;
+            }
+    
+            .bar.highlight {
+                background-color: #fa997b;
+            }
+
+            .bar.highlight .min-part {
+                background-color: #ff6434;
+            }
+    
+            .min-part {
+                background-color: #2196F3;
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                transition: background-color 0.5s;
+            }
+
+            .temperature-value {
+                position: absolute;
+                width: 40px;
+                font-weight: 500;
+                margin-top: 2px;
+                font-size: 10pt;
+                text-align: center;
+            }
+
+            .max-value {
+                top: -18px;
+            }
+
+            #tempInfo div {
+                margin-bottom: 5px;
+            }
+
+            #dayInput {
+                width: 13%;
+                border: 1px solid #e2eaec;
+                border-radius: 10px;
+                padding: 8px;
+                font-size: 12pt;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6
+            <hr>
+        </header>
+
+        <main>
+            <div class="chart-container" id="chart"></div>
+            <input type="number" id="dayInput" min="1" max="30" placeholder="Введите день месяца (1-30)">
+            <p id="tempInfo"></p>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Денисенко Александра, ФБИ-31, 2 курс, 2025
+        </footer>
+
+        <script>
+            const temperatures = [];
+            for(let i = 0; i < 30; i++) {
+                const min = Math.floor(Math.random() * 34);
+                const max = min + Math.floor(Math.random() * 10) + 1;
+                temperatures.push({min, max});
+            }
+    
+            const chart = document.getElementById('chart');
+            for(let index = 0; index < temperatures.length; index++) {
+                const temp = temperatures[index];
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                bar.dataset.day = index + 1;
+                
+                const maxHeight = (temp.max) * 5;
+                const minHeight = (temp.min) * 5;
+                
+                bar.style.height = maxHeight + 'px';
+
+                let minValueHtml = '';
+                if (temp.min > 2) {
+                    minValueHtml = `<div class="temperature-value min-value">${temp.min}&deg;C</div>`;
+                }
+
+                bar.innerHTML = `
+                    <div class="temperature-value max-value">${temp.max}&deg;C</div>
+                    <div class="min-part" style="height:${minHeight}px">
+                        ${minValueHtml}
+                    </div>
+                `;
+                
+                chart.appendChild(bar);
+            };
+    
+            const dayInput = document.getElementById('dayInput');
+            const tempInfo = document.getElementById('tempInfo');
+            let selectedBar = null;
+    
+            dayInput.addEventListener('input', function() {
+                const day = parseInt(this.value);
+                
+                if(selectedBar) {
+                    selectedBar.classList.remove('highlight');
+                }
+    
+                if(!isNaN(day) && day >= 1 && day <= 30) {
+                    const bar = document.querySelector(`[data-day="${day}"]`);
+                    if(bar) {
+                        bar.classList.add('highlight');
+                        selectedBar = bar;
+                        const temp = temperatures[day-1];
+                        tempInfo.innerHTML = `<div><b>Минимальная температура:</b> ${temp.min}&deg;C</div><div><b>Максимальная температура:</b> ${temp.max}&deg;C</div>`;
+                    }
+                } else {
+                    tempInfo.innerHTML = '';
+                }
+            });
+        </script>
+    </body>
+</html>
