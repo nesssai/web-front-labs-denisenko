@@ -20,8 +20,31 @@
                 out.innerHTML += `<div>Дата и время для Испании: ${today.toLocaleString('es-ES')}</div>`;
                 out.innerHTML += `<div>Дата и время для Франции: ${today.toLocaleString('fr-FR')}</div>`;
             }
+
+            function changeColors() {
+                const header = document.getElementsByTagName('header')[0];
+                const rgb = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+                header.style.color = rgb;
+            }
+
+            function startChangeColors() {
+                changeColors();
+                timerNim = setInterval(changeColors, 800);
+                document.getElementById('start-btn').disabled = true;
+                document.getElementById('stop-btn').disabled = false;
+            }
+
+            function stopChangeColors() {
+                clearInterval(timerNim);
+                document.getElementById('start-btn').disabled = false;
+                document.getElementById('stop-btn').disabled = true;
+            }
         </script>
         <style>
+            header {
+                transition: color 0.5s;
+            }
+
             #current-date div {
                 font-family: 'Segoe UI', sans-serif;
                 font-size: 18px;
@@ -30,7 +53,7 @@
                 padding: 15px;
                 border-left: 5px solid #3498db;
                 background-color: #f8f9fa;
-                border-radius: 4px;
+                border-radius: 5px;
                 box-shadow: 0 2px 4px rgba(0,0,0,0.1);
                 transition: transform 0.2s;
             }
@@ -43,6 +66,26 @@
             #current-date {
                 max-width: 600px;
             }
+
+            button {
+                padding: 10px 15px;
+                margin: 0 0 0 15px;
+                border: none;
+                border-radius: 5px;
+                background-color: #3498db;
+                color: white;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            button:hover {
+                background-color: #2980b9;
+            }
+
+            button:disabled {
+                background-color: #bdc3c7;
+                cursor: not-allowed;
+            }
         </style>
     </head>
     <body onload="showDate()">
@@ -53,6 +96,10 @@
 
         <main>
             <div id="current-date"></div>
+            <div>
+                <button onclick="startChangeColors()" id="start-btn">Старт</button>
+                <button onclick="stopChangeColors()" disabled id="stop-btn">Стоп</button>
+            </div>
         </main>
 
         <footer>
