@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Денисенко Александра Юрьевна. Дата-время</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../images/favicon-16x16.png">
+        <link rel="icon" href="../images/favicon-32x32.png">
+        <script>
+            function showDate() {
+                let out = document.getElementById('current-date');
+                let today = new Date();
+            
+                out.innerHTML += `<div>Дата и время для России: ${today.toLocaleString('ru-RU')}</div>`;
+                out.innerHTML += `<div>Дата и время для США: ${today.toLocaleString('en-US')}</div>`;
+                out.innerHTML += `<div>Дата и время для Японии: ${today.toLocaleString('ja-JP')}</div>`;
+                out.innerHTML += `<div>Дата и время для Германии: ${today.toLocaleString('de-DE')}</div>`;
+                out.innerHTML += `<div>Дата и время для Испании: ${today.toLocaleString('es-ES')}</div>`;
+                out.innerHTML += `<div>Дата и время для Франции: ${today.toLocaleString('fr-FR')}</div>`;
+            }
+        </script>
+        <style>
+            #current-date div {
+                font-family: 'Segoe UI', sans-serif;
+                font-size: 18px;
+                color: #2c3e50;
+                margin: 15px;
+                padding: 15px;
+                border-left: 5px solid #3498db;
+                background-color: #f8f9fa;
+                border-radius: 4px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                transition: transform 0.2s;
+            }
+
+            #current-date div:hover {
+                transform: translateX(10px);
+                background-color: #f3f3f3;
+            }
+
+            #current-date {
+                max-width: 600px;
+            }
+        </style>
+    </head>
+    <body onload="showDate()">
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6
+            <hr>
+        </header>
+
+        <main>
+            <div id="current-date"></div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Денисенко Александра, ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
+</html>
