@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Денисенко Александра Юрьевна. Объекты</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../images/favicon-16x16.png">
+        <link rel="icon" href="../images/favicon-32x32.png">
+        <script src="books.js"></script>
+        <script>
+            function showBooks() {
+                const bookList = document.getElementById('bookList');
+                bookList.innerHTML = '';
+        
+                for (let i = 0; i < books.length; i++) {
+                    const book = books[i];
+                    let bookClass = 'book';
+                    if (book.bestseller) bookClass += ' bestseller';
+                    if (!book.inStock) bookClass += ' out-of-stock';
+
+                    let outOfStockLabel = '';
+                    if (!book.inStock) {
+                    outOfStockLabel = '<span class="out-of-stock-label">(Нет в наличии)</span>';
+                    }
+        
+                    bookList.innerHTML += `
+                        <div class="${ bookClass }">
+                            <b>${ book.author }.</b>
+                            <i>${ book.name }</i>
+                            &mdash; ${ book.publicationYear }
+                            <span class="price">${ book.price } ₽</span>
+                            ${ outOfStockLabel }
+                        </div>
+                    `;
+                }
+            }
+        </script>
+        <style>
+            .book {
+                padding: 15px;
+                margin: 10px 0;
+                border: 1px solid #dddddd;
+                border-radius: 16px;
+                background-color: #ffffff;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            .book.bestseller {
+                border: 2px solid #ffd700;
+                background-color: #fff9e6;
+            }
+
+            .book.out-of-stock {
+                opacity: 0.5;
+                background-color: #f8f9fa;
+                position: relative;
+            }
+
+            .out-of-stock-label {
+                color: #dc3545;
+                font-style: italic;
+                margin-left: 10px;
+            }
+
+            .price {
+                color: #28a745;
+                font-weight: bold;
+                margin-left: 10px;
+            }
+        </style>
+    </head>
+    <body onload="showBooks()">
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6
+            <hr>
+        </header>
+
+        <main>
+            <h1>Список книг</h1>
+            <div id="bookList">
+            </div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Денисенко Александра, ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
+</html>
