@@ -9,16 +9,34 @@
         <link rel="icon" href="../images/favicon-16x16.png">
         <link rel="icon" href="../images/favicon-32x32.png">
         <script>
+            let timerNim;
+            let timeUpdateInterval;
+
             function showDate() {
                 let out = document.getElementById('current-date');
                 let today = new Date();
             
-                out.innerHTML += `<div>Дата и время для России: ${today.toLocaleString('ru-RU')}</div>`;
-                out.innerHTML += `<div>Дата и время для США: ${today.toLocaleString('en-US')}</div>`;
-                out.innerHTML += `<div>Дата и время для Японии: ${today.toLocaleString('ja-JP')}</div>`;
-                out.innerHTML += `<div>Дата и время для Германии: ${today.toLocaleString('de-DE')}</div>`;
-                out.innerHTML += `<div>Дата и время для Испании: ${today.toLocaleString('es-ES')}</div>`;
-                out.innerHTML += `<div>Дата и время для Франции: ${today.toLocaleString('fr-FR')}</div>`;
+                out.innerHTML = `
+                    <div>Дата и время для России: ${today.toLocaleString('ru-RU')}</div>
+                    <div>Дата и время для США: ${today.toLocaleString('en-US')}</div>
+                    <div>Дата и время для Японии: ${today.toLocaleString('ja-JP')}</div>
+                    <div>Дата и время для Германии: ${today.toLocaleString('de-DE')}</div>
+                    <div>Дата и время для Испании: ${today.toLocaleString('es-ES')}</div>
+                    <div>Дата и время для Франции: ${today.toLocaleString('fr-FR')}</div>
+                `;
+            }
+
+            function startUpdateTime() {
+                showDate();
+                timeUpdateInterval = setInterval(showDate, 1000);
+                document.getElementById('update-time-btn').disabled = true;
+                document.getElementById('stop-time-btn').disabled = false;
+            }
+
+            function stopUpdateTime() {
+                clearInterval(timeUpdateInterval);
+                document.getElementById('update-time-btn').disabled = false;
+                document.getElementById('stop-time-btn').disabled = true;
             }
 
             function changeColors() {
@@ -66,10 +84,11 @@
             #current-date {
                 max-width: 600px;
             }
-
-            button {
+            
+            .buttons-group button {
                 padding: 10px 15px;
                 margin: 0 0 0 15px;
+                font-size: 14px;
                 border: none;
                 border-radius: 5px;
                 background-color: #3498db;
@@ -78,11 +97,11 @@
                 transition: background-color 0.3s;
             }
 
-            button:hover {
+            .buttons-group button:hover {
                 background-color: #2980b9;
             }
 
-            button:disabled {
+            .buttons-group button:disabled {
                 background-color: #bdc3c7;
                 cursor: not-allowed;
             }
@@ -96,9 +115,11 @@
 
         <main>
             <div id="current-date"></div>
-            <div>
-                <button onclick="startChangeColors()" id="start-btn">Старт</button>
-                <button onclick="stopChangeColors()" disabled id="stop-btn">Стоп</button>
+            <div class="buttons-group">
+                <button onclick="startChangeColors()" id="start-btn">Старт (цвет)</button>
+                <button onclick="stopChangeColors()" disabled id="stop-btn">Стоп (цвет)</button>
+                <button onclick="startUpdateTime()" id="update-time-btn">Обновлять время</button>
+                <button onclick="stopUpdateTime()" disabled id="stop-time-btn">Остановить время</button>
             </div>
         </main>
 
