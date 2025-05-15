@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Денисенко Александра Юрьевна. Курс евро</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../images/favicon-16x16.png">
+        <link rel="icon" href="../images/favicon-32x32.png">
+        <script>
+            function getEuroExchangeRate() {
+                const url = 'https://www.cbr-xml-daily.ru/daily_json.js';
+                fetch(url)
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(json) {
+                        const currentDate = json.Date;
+                        const currentRate = json.Valute.EUR.Value.toFixed(2);
+                        const previousDate = json.PreviousDate;
+                        const previousRate = json.Valute.EUR.Previous.toFixed(2);
+                        const difference = (currentRate - previousRate).toFixed(2);
+
+                        let trend = '';
+                        let trendClass = '';
+                        if (difference > 0) {
+                            trend = 'поднялся';
+                            trendClass = 'positive';
+                        } else if (difference < 0) {
+                            trend = 'опустился';
+                            trendClass = 'negative';
+                        } else {
+                            trend = 'не изменился';
+                            trendClass = '';
+                        }
+
+                        let euroInfoDiv = document.getElementById('euro-info');
+                        euroInfoDiv.style.display = 'block';
+                        let trendMessage = `<b>Изменение:</b> ${difference} руб, курс ${trend}`;
+
+                        euroInfoDiv.innerHTML = `
+                            <h2>Курс евро €</h2>
+                            <p><b>Дата запроса:</b> ${formatDate(currentDate)}</p>
+                            <p><b>Текущий курс:</b> ${currentRate} руб.</p>
+                            <p><b>Курс на ${formatDate(previousDate)}:</b> ${previousRate} руб.</p>
+                            <p class="${trendClass}">${trendMessage}</p>
+                            <p><i>Данные взяты с <a href="https://www.cbr-xml-daily.ru/">API для курсов ЦБ РФ</i></a></p>
+                        `;
+                    })
+                }
+
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const year = date.getFullYear();
+                return `${day}.${month}.${year}`;
+            }
+        </script>
+        <style>
+            button {
+                background-color: #2e5e82;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 10px;
+                transition: background-color 0.2s;
+                font-family: 'Segoe UI', sans-serif;
+            }
+
+            button:hover {
+                background-color: #3498db;
+            }
+
+            #euro-info {
+                border: 2px solid #cccccc;
+                padding: 15px;
+                margin-top: 10px;
+                font-family: 'Segoe UI', sans-serif;
+                border-radius: 10px;
+                background-color: #f9f9f9;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+
+            #euro-info h2 {
+                color: #2e5e82;
+            }
+
+            #euro-info p {
+                line-height: 0.5;
+            }
+
+            #euro-info .positive {
+                color: green;
+            }
+
+            #euro-info .negative {
+                color: red;
+            }
+
+            #euro-info a {
+                color: #2e5e82;
+                text-decoration: none;
+                transition: background-color 0.5s;
+            }
+
+            #euro-info a:hover {
+                text-decoration: underline;
+                color: #3498db;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 7
+            <hr>
+        </header>
+
+        <main>
+            <button onclick="getEuroExchangeRate()">Получить курс евро</button>
+            <div id="euro-info"></div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Денисенко Александра, ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
+</html>
