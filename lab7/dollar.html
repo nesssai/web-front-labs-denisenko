@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Денисенко Александра Юрьевна. Курс доллара</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../images/favicon-16x16.png">
+        <link rel="icon" href="../images/favicon-32x32.png">
+        <script src="dollar-data.js"></script>
+        <script>
+            function showExchange () {
+                let table = document.getElementById('dollar-table');
+                for (let i = 0; i < exchange.length; i++) {
+                    let tr = document.createElement('tr');
+                    let td = document.createElement('td');
+                    td.innerText = exchange[i];
+                    tr.appendChild(td);
+                    table.appendChild(tr);
+                }
+
+                let sum = 0;
+                for (let i = 0; i < exchange.length; i++) {
+                    sum += exchange[i];
+                }
+                
+                let average = sum / exchange.length;
+                average = average.toFixed(2);
+
+                let detailDiv = document.getElementById('detail');
+                detailDiv.innerText = 'Среднее значение курса доллара: ' + average;
+
+                let button = document.querySelector('button');
+                button.remove();
+            }
+        </script>
+        <style>
+            button {
+                background-color: #2e5e82;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 5px;
+                 transition: background-color 0.2s;
+            }
+
+            button:hover {
+                background-color: #3498db;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 7
+            <hr>
+        </header>
+
+        <main>
+            <button onclick="showExchange()">Курс доллара</button>
+            <table border="1" id="dollar-table"></table>
+            <div id="detail"></div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Денисенко Александра, ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
+</html>
