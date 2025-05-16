@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Денисенко Александра Юрьевна. Прогноз погоды</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../images/favicon-16x16.png">
+        <link rel="icon" href="../images/favicon-32x32.png">
+        <script>
+            function getWeather() {
+                const url = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m&timezone=Asia%2FBangkok';
+
+                fetch(url)
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        const times = data.hourly.time;
+                        const temps = data.hourly.temperature_2m;
+                        const targetHours = ['08:00', '12:00', '20:00'];
+
+                        let output = ' ';
+
+                        for (let i = 0; i < targetHours.length; i++) {
+                            const hour = targetHours[i];
+                            const index = times.findIndex(function(t) {
+                                return t.includes(`T${hour}`);
+                            });
+
+                            if (index !== -1) {
+                                const date = new Date(times[index]).toLocaleTimeString('ru-RU', {
+                                    hour: '2-digit',
+                                    minute: '2-digit'
+                                });
+
+                                output += `
+                                    <div class="weather-time">
+                                        <b>${date}:</b> ${temps[index]}°C
+                                    </div>
+                                `;
+                            }
+                        }
+
+                        let weatherResult = document.getElementById('weatherResult');
+
+                        weatherResult.innerHTML = `
+                            <h2 class="weather-title">Погода в Новосибирске сегодня:</h2>
+                            ${output}
+                        `;
+                        weatherResult.style.display = 'block';
+                    })
+            }
+        </script>
+        <style>
+            button {
+                background-color: #2e5e82;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 10px;
+                transition: background-color 0.2s;
+                font-family: 'Segoe UI', sans-serif;
+            }
+
+            button:hover {
+                background-color: #3498db;
+            }
+
+            .weather-result {
+                display: none;
+                border: 2px solid #cccccc;
+                padding: 15px;
+                margin-top: 10px;
+                font-family: 'Segoe UI', sans-serif;
+                border-radius: 10px;
+                background-color: #f9f9f9;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .weather-time {
+                line-height: 1.5;
+                font-family: 'Segoe UI', sans-serif;
+            }
+
+            .weather-title {
+                color: #2e5e82;
+                font-family: 'Segoe UI', sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 7
+            <hr>
+        </header>
+
+        <main>
+            <button onclick="getWeather()">Показать температуру</button>
+            <div id="weatherResult" class="weather-result"></div>
+        </main>
+
+        <footer>
+            <hr>
+            &copy; Денисенко Александра, ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
+</html>
