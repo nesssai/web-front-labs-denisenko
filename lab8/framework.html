@@ -94,7 +94,10 @@
                     },
                     edit(id, character) {
                         let newName = prompt('Введите имя персонажа:', character);
-                        this.characters[id] = newName;
+                        this.characters[id] = 'Щас-щас, секундочку...';
+                        setTimeout(() => {
+                            this.characters[id] = newName;
+                        }, 2000);
                     },
                 }
             }).mount('#app');
