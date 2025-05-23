@@ -33,6 +33,13 @@
             li {
                 margin-bottom: 5px;
             }
+
+            input {
+                border-radius: 5px;
+                border: 1px solid #cccccc;
+                padding: 5px;
+                font-size: 11pt;
+            }
         </style>
     </head>
     <body>
@@ -61,6 +68,14 @@
                         {{ character }} <button @click='edit(id, character)'>?</button>
                     </li>
                 </ul>
+                <hr>
+
+                <h2>Калькулятор</h2>
+                <input type="number" v-model="a">
+                +
+                <input type="number" v-model="b">
+                <button @click="sum" style="margin-left: 5px;">=</button>
+                <span>{{ result }}</span>
             </div>
         </main>
 
@@ -82,6 +97,9 @@
                         tel: '+7 953 864 71 21'
                        },
                        characters: ['Скуби-Ду', 'Шэгги Роджерс', 'Фред Джонс', 'Велма Динкли', 'Дафна Блейк'],
+                       a: 1,
+                       b: 10,
+                       result: '',
                     }
                 },
 
@@ -98,6 +116,9 @@
                         setTimeout(() => {
                             this.characters[id] = newName;
                         }, 2000);
+                    },
+                    sum() {
+                        this.result = this.a + this.b;
                     },
                 }
             }).mount('#app');
