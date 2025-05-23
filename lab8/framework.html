@@ -86,10 +86,14 @@
                     </thead>
                     <tr v-for="(character, id) in characters">
                         <td>
-                            {{ character }}
+                            <span v-if="character === null">Щас-щас, секундочку...</span>
+                            <span v-else>{{ character }}</span>
                         </td>
                         <td>
-                            <button @click="edit(id, character)" class="btn btn-primary"><i class="bi bi-pencil-square"></i></button>
+                            <button @click="edit(id, character)" class="btn btn-primary" v-if="character !== null">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <div class="spinner-border text-primary" aria-hidden="true" role="status" v-if="character === null"></div>
                         </td>
                     </tr>
                 </table>
@@ -149,7 +153,7 @@
                     },
                     edit(id, character) {
                         let newName = prompt('Введите имя персонажа:', character);
-                        this.characters[id] = 'Щас-щас, секундочку...';
+                        this.characters[id] = null;
                         setTimeout(() => {
                             this.characters[id] = newName;
                         }, 2000);
