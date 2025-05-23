@@ -13,27 +13,12 @@
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
         <style>
             button {
-                background-color: #2e5e82;
-                color: white;
-                border: none;
-                padding: 10px 15px;
-                font-size: 16px;
                 margin-right: 5px;
                 cursor: pointer;
-                border-radius: 5px;
-                transition: background-color 0.2s;
-            }
-
-            button:hover {
-                background-color: #3498db;
             }
 
             h2 {
                 color: #2c3e50;
-            }
-
-            li {
-                margin-bottom: 5px;
             }
 
             input {
@@ -54,8 +39,14 @@
             <div id="app">
                 <h1 :title="messageRus">{{ message }}</h1>
                 <p>Счётчик: {{ counter }}</p>
-                <button @click="incCounter" v-if="counter < 10">Увеличить на 1</button>
-                <button @click="decCounter" v-if="counter > 0">Уменьшить на 1</button>
+                <div class="mb-3">
+                    <button @click="incCounter" v-if="counter < 10" class="btn btn-primary btn-icon">
+                        <i class="bi bi-plus-circle"></i> Увеличить на 1
+                    </button>
+                    <button @click="decCounter" v-if="counter > 0" class="btn btn-primary btn-icon">
+                        <i class="bi bi-dash-circle"></i> Уменьшить на 1
+                    </button>
+                </div>
                 <hr>
 
                 <h2>Пользователь:</h2>
@@ -69,7 +60,10 @@
                         <h2 class="card-title">Персонажи Скуби-Ду</h2>
                         <ul class="list-group">
                             <li v-for="(character, id) in characters" class="list-group-item">
-                                {{ character }} <button @click='edit(id, character)'>?</button>
+                                {{ character }}
+                                <button @click='edit(id, character)' class="btn btn-sm btn-outline-primary" v-if="character !== null">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
                             </li>
                         </ul>
                     </div>
@@ -90,28 +84,30 @@
                             <span v-else>{{ character }}</span>
                         </td>
                         <td>
-                            <button @click="edit(id, character)" class="btn btn-primary" v-if="character !== null">
+                            <button @click="edit(id, character)" class="btn btn-outline-primary btn-sm" v-if="character !== null">
                                 <i class="bi bi-pencil-square"></i>
                             </button>
-                            <div class="spinner-border text-primary" aria-hidden="true" role="status" v-if="character === null"></div>
+                            <div class="spinner-border text-primary" role="status" v-if="character === null"></div>
                         </td>
                     </tr>
                 </table>
                 <hr>
 
                 <h2>Калькулятор</h2>
-                <div class="row g-5">
+                <div class="row g-3 align-items-center">
                     <div class="col-auto">
                         <input type="number" v-model="a" class="form-control">
                     </div>
-                    <div class="col-auto">
+                    <div class="col-auto fs-4">
                         +
                     </div>
                     <div class="col-auto">
                         <input type="number" v-model="b" class="form-control">
                     </div>
                     <div class="col-auto">
-                        <button @click="sum" class="btn btn-primary">=</button>
+                        <button @click="sum" class="btn btn-primary">
+                            <i class="bi bi-calculator"></i> =
+                        </button>
                     </div>
                     <div class="col-auto">
                         <span class="badge text-bg-primary fs-5">{{ result }}</span>
