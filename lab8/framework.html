@@ -40,10 +40,10 @@
                 <h1 :title="messageRus">{{ message }}</h1>
                 <p>Счётчик: {{ counter }}</p>
                 <div class="mb-3">
-                    <button @click="incCounter" v-if="counter < 10" class="btn btn-primary btn-icon">
+                    <button @click="incCounter" v-if="counter < 10" class="btn btn-primary">
                         <i class="bi bi-plus-circle"></i> Увеличить на 1
                     </button>
-                    <button @click="decCounter" v-if="counter > 0" class="btn btn-primary btn-icon">
+                    <button @click="decCounter" v-if="counter > 0" class="btn btn-primary">
                         <i class="bi bi-dash-circle"></i> Уменьшить на 1
                     </button>
                 </div>
@@ -58,12 +58,23 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h2 class="card-title">Персонажи Скуби-Ду</h2>
+                        <button @click="addCharacter" class="btn btn-primary mb-3">
+                            <i class="bi bi-plus-circle"></i> Добавить персонажа
+                        </button>
                         <ul class="list-group">
                             <li v-for="(character, id) in characters" class="list-group-item">
-                                {{ character }}
-                                <button @click='edit(id, character)' class="btn btn-sm btn-outline-primary" v-if="character !== null">
-                                    <i class="bi bi-pencil-square"></i>
-                                </button>
+                                <div>
+                                    <span v-if="character === null">Щас-щас, секундочку...</span>
+                                    <span v-else>{{ character }}</span>
+                                </div>
+                                <div>
+                                    <button @click="edit(id, character)" class="btn btn-sm btn-outline-primary" v-if="character !== null">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <button @click="removeCharacter(id)" class="btn btn-sm btn-outline-danger" v-if="character !== null">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -71,6 +82,12 @@
                 <hr>
 
                 <h2>Персонажи Скуби-Ду</h2>
+                <div>
+                    <button @click="addCharacter" class="btn btn-primary mb-3">
+                        <i class="bi bi-plus-circle"></i> Добавить персонажа
+                    </button>
+                </div>
+
                 <table class="table table-bordered table-hover">
                     <thead class="table-primary">
                         <tr>
@@ -84,8 +101,11 @@
                             <span v-else>{{ character }}</span>
                         </td>
                         <td>
-                            <button @click="edit(id, character)" class="btn btn-outline-primary btn-sm" v-if="character !== null">
+                            <button @click="edit(id, character)" class="btn btn-outline-primary" v-if="character !== null">
                                 <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button @click="removeCharacter(id)" class="btn btn-outline-danger" v-if="character !== null">
+                                <i class="bi bi-trash"></i>
                             </button>
                             <div class="spinner-border text-primary" role="status" v-if="character === null"></div>
                         </td>
@@ -149,13 +169,29 @@
                     },
                     edit(id, character) {
                         let newName = prompt('Введите имя персонажа:', character);
-                        this.characters[id] = null;
-                        setTimeout(() => {
-                            this.characters[id] = newName;
-                        }, 2000);
+                        if (newName !== null && newName.trim() !== '') {
+                            this.characters[id] = null;
+                            setTimeout(() => {
+                                this.characters[id] = newName.trim();
+                            }, 2000);
+                        }
                     },
                     sum() {
                         this.result = this.a + this.b;
+                    },
+                    addCharacter() {
+                        let newName = prompt("Введите имя нового персонажа:");
+                        if (newName && newName.trim() !== "") {
+                            this.characters.push(null);
+                            setTimeout(() => {
+                                this.characters[this.characters.length - 1] = newName.trim();
+                            }, 2000);
+                        }
+                    },
+                    removeCharacter(id) {
+                        if (confirm("Удалить персонажа?")) {
+                            this.characters.splice(id, 1);
+                        }
                     },
                 }
             }).mount('#app');
