@@ -71,6 +71,25 @@
                 </ul>
                 <hr>
 
+                <h2>Персонажи Скуби-Ду</h2>
+                <table class="table table-bordered table-hover">
+                    <thead class="table-primary">
+                        <tr>
+                            <th>Название</th>
+                            <th>Редактировать</th>
+                        </tr>
+                    </thead>
+                    <tr v-for="(character, id) in characters">
+                        <td>
+                            {{ character }}
+                        </td>
+                        <td>
+                            <button @click="edit(id, character)">?</button>
+                        </td>
+                    </tr>
+                </table>
+                <hr>
+
                 <h2>Калькулятор</h2>
                 <div class="row g-5">
                     <div class="col-auto">
