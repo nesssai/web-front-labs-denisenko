@@ -64,8 +64,8 @@
                 <hr>
 
                 <h2>Персонажи Скуби-Ду</h2>
-                <ul>
-                    <li v-for="(character, id) in characters">
+                <ul class="list-group">
+                    <li v-for="(character, id) in characters" class="list-group-item">
                         {{ character }} <button @click='edit(id, character)'>?</button>
                     </li>
                 </ul>
