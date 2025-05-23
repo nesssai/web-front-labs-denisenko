@@ -49,6 +49,14 @@
                 <div><b>Имя:</b> {{ user.name }}</div>
                 <div><b>Возраст:</b> {{ user.age }}</div>
                 <div><b>Телефон:</b> {{ user.tel }}</div>
+                <hr>
+
+                <h2>Персонажи Скуби-Ду</h2>
+                <ul>
+                    <li v-for="character in characters">
+                        {{ character }}
+                    </li>
+                </ul>
             </div>
         </main>
 
@@ -69,6 +77,7 @@
                         age: '19',
                         tel: '+7 953 864 71 21'
                        },
+                       characters: ['Скуби-Ду', 'Шэгги Роджерс', 'Фред Джонс', 'Велма Динкли', 'Дафна Блейк'],
                     }
                 },
 
