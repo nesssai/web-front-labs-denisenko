@@ -37,8 +37,8 @@
             <div id="app">
                 <h1 :title="messageRus">{{ message }}</h1>
                 <p>Счётчик: {{ counter }}</p>
-                <button @click="incCounter">Увеличить на 1</button>
-                <button @click="decCounter">Уменьшить на 1</button>
+                <button @click="incCounter" v-if="counter < 10">Увеличить на 1</button>
+                <button @click="decCounter" v-if="counter > 0">Уменьшить на 1</button>
             </div>
         </main>
 
