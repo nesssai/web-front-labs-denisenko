@@ -25,6 +25,10 @@
             button:hover {
                 background-color: #3498db;
             }
+
+            h2 {
+                color: #2c3e50;
+            }
         </style>
     </head>
     <body>
@@ -39,6 +43,12 @@
                 <p>Счётчик: {{ counter }}</p>
                 <button @click="incCounter" v-if="counter < 10">Увеличить на 1</button>
                 <button @click="decCounter" v-if="counter > 0">Уменьшить на 1</button>
+                <hr>
+
+                <h2>Пользователь:</h2>
+                <div><b>Имя:</b> {{ user.name }}</div>
+                <div><b>Возраст:</b> {{ user.age }}</div>
+                <div><b>Телефон:</b> {{ user.tel }}</div>
             </div>
         </main>
 
@@ -54,6 +64,11 @@
                        message: 'Hello!',
                        messageRus: "Привет!",
                        counter: 1,
+                       user: {
+                        name: 'Александра',
+                        age: '19',
+                        tel: '+7 953 864 71 21'
+                       },
                     }
                 },
 
