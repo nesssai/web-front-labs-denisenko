@@ -9,6 +9,23 @@
         <link rel="icon" href="../images/favicon-16x16.png">
         <link rel="icon" href="../images/favicon-32x32.png">
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <style>
+            button {
+                background-color: #2e5e82;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                font-size: 16px;
+                margin-right: 5px;
+                cursor: pointer;
+                border-radius: 5px;
+                transition: background-color 0.2s;
+            }
+
+            button:hover {
+                background-color: #3498db;
+            }
+        </style>
     </head>
     <body>
         <header>
@@ -19,6 +36,9 @@
         <main>
             <div id="app">
                 <h1 :title="messageRus">{{ message }}</h1>
+                <p>Счётчик: {{ counter }}</p>
+                <button @click="incCounter">Увеличить на 1</button>
+                <button @click="decCounter">Уменьшить на 1</button>
             </div>
         </main>
 
@@ -32,9 +52,19 @@
                 data() {
                     return {
                        message: 'Hello!',
-                       messageRus: "Привет!"
+                       messageRus: "Привет!",
+                       counter: 1,
                     }
                 },
+
+                methods: {
+                    incCounter() {
+                        this.counter++;
+                    },
+                    decCounter() {
+                        this.counter--;
+                    },
+                }
             }).mount('#app');
         </script>
     </body>
