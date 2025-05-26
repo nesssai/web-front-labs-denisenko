@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Денисенко Александра Юрьевна. Совкомфлот — Курс валют</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="icons/favicon-16x16.png">
+        <link rel="icon" href="icons/favicon-32x32.png">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+            .calculator-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px;
+            }
+
+            .calculator {
+                background-color: #ffffff;
+                padding: 30px 40px;
+                width: 100%;
+                max-width: 400px;
+                font-family: 'Fira Sans', sans-serif;
+            }
+
+            .calculator h1 {
+                margin-bottom: 20px;
+                font-size: 36px;
+                color: #003883;
+                text-align: center;
+            }
+
+            .info {
+                font-size: 17px;
+                margin-bottom: 25px;
+                text-align: center;
+                font-weight: 500;
+            }
+
+            .rate-up {
+                color: #2e7d32;
+            }
+            .rate-down {
+                color: #c62828;
+            }
+            .rate-same {
+                color: black;
+            }
+
+            .calculator label {
+                display: block;
+                margin-bottom: 6px;
+                font-weight: 600;
+                color: black;
+                font-size: 17px;
+            }
+
+            .calculator input[type="number"] {
+                width: 100%;
+                padding: 10px 12px;
+                font-size: 17px;
+                border: 1px solid #cccccc;
+                box-sizing: border-box;
+                transition: border-color 0.3s;
+            }
+
+            .calculator input[type="number"]:focus {
+                border-color: #7da7e0;
+                outline: none;
+            }
+
+            .calculator input[type="number"]::placeholder {
+                color: #bbbbbb;
+            }
+
+            .calculator label + input {
+                margin-bottom: 20px;
+            }
+
+            .chart-container {
+                padding: 20px;
+                max-width: 1000px;
+                margin: 5px auto;
+                background-color: #ffffff;
+            }
+
+            #chart {
+                width: 100% !important;
+                height: 500px !important;
+            }
+        </style>
+    </head>
+    <body>
+        <button class="menu-button">☰</button>
+        <nav class="menu-panel">
+            <a href="company.html">О компании</a>
+            <a href="news.html">Новости</a>
+            <a href="exchange.html">Курс валют</a>
+            <a href="contact.html">Контактные данные</a>
+            <a href="video.html">Видео</a>
+        </nav>
+
+        <header>
+            <img src="logo.svg" class="logo">
+        </header>
+
+        <main>
+            <div class="calculator-container">
+                <div class="calculator">
+                    <h1>Калькулятор валют</h1>
+                    <div class="info" id="rate-info">Загрузка курса...</div>
+
+                    <label for="rub-input">Рубли (RUB):</label>
+                    <input type="number" id="rub-input" placeholder="Введите сумму в рублях" min="0" step="any" />
+
+                    <label for="tnb-input">Баты (THB):</label>
+                    <input type="number" id="tnb-input" placeholder="Введите сумму в батах" min="0" step="any" />
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="chart"></canvas>
+            </div>
+        </main>
+
+        <footer>
+            <img src="logo.svg" class="logo">
+
+            <div class="social-icons">
+                <a href="https://t.me/sovcomflot">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://vk.com/sovcomflotgroup">
+                    <i class="fab fa-vk"></i>
+                </a>
+            </div>
+        </footer>
+        
+        <script src="menu.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const rubInput = document.getElementById('rub-input');
+                const tnbInput = document.getElementById('tnb-input');
+                const rateInfo = document.getElementById('rate-info');
+
+                let tnbRate = null;
+
+                function formatNumber(num) {
+                    return parseFloat(num).toFixed(2);
+                }
+
+                fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+                    .then(response => response.json())
+                    .then(data => {
+                        const nominal = data.Valute.THB.Nominal;
+                        tnbRate = data.Valute.THB.Value / nominal;
+                        const previousRate = data.Valute.THB.Previous / nominal;
+                        let trendSymbol = '→';
+                        let className = 'rate-same';
+                        if (tnbRate > previousRate) {
+                            trendSymbol = '▲';
+                            className = 'rate-up';
+                        } else if (tnbRate < previousRate) {
+                            trendSymbol = '▼';
+                            className = 'rate-down';
+                        }
+                        rateInfo.textContent = `Курс на сегодня: 1 THB = ${formatNumber(tnbRate)} RUB (${trendSymbol})`;
+                        rateInfo.classList.add(className);
+
+                        initChart();
+                    });
+
+                function clampInput(input) {
+                    if (input.value < 0) input.value = 0;
+                }
+
+                rubInput.addEventListener('input', () => {
+                    clampInput(rubInput);
+                    if (tnbRate && rubInput.value) {
+                        tnbInput.value = formatNumber(rubInput.value / tnbRate);
+                    } else {
+                        tnbInput.value = '';
+                    }
+                });
+
+                tnbInput.addEventListener('input', () => {
+                    clampInput(tnbInput);
+                    if (tnbRate && tnbInput.value) {
+                        rubInput.value = formatNumber(tnbInput.value * tnbRate);
+                    } else {
+                        rubInput.value = '';
+                    }
+                });
+
+                let chartInstance = null;
+
+                function getLast30Dates() {
+                    const dates = [];
+                    const today = new Date();
+                    for (let i = 29; i >= 0; i--) {
+                        const d = new Date(today);
+                        d.setDate(today.getDate() - i);
+                        dates.push(d.toLocaleDateString('ru-RU'));
+                    }
+                    return dates;
+                }
+
+                function initChart() {
+                    const labels = getLast30Dates();
+                    const today = new Date();
+                    const todayLabel = today.toLocaleDateString('ru-RU');
+                    const values = labels.map(label => {
+                        if (label === todayLabel) {
+                            return formatNumber(tnbRate);  // без колебаний
+                        } else {
+                            const fluctuation = (Math.random() - 0.5) * 2;
+                            return formatNumber(tnbRate + fluctuation);
+                        }
+                    });
+
+                    const ctx = document.getElementById('chart').getContext('2d');
+                    
+                    if (chartInstance) chartInstance.destroy();
+
+                    chartInstance = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels,
+                            datasets: [{
+                                label: 'Курс THB к RUB',
+                                data: values,
+                                backgroundColor: '#003883',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        font: {
+                                            family: "'Fira Sans', sans-serif",
+                                            size: 14
+                                        }
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    ticks: {
+                                        font: {
+                                            family: "'Fira Sans', sans-serif",
+                                            size: 12
+                                        },
+                                        maxRotation: 90,
+                                        minRotation: 45,
+                                        autoSkip: false
+                                    }
+                                },
+                                y: {
+                                    ticks: {
+                                        font: {
+                                            family: "'Fira Sans', sans-serif",
+                                            size: 12
+                                        }
+                                    },
+                                    beginAtZero: false
+                                }
+                            },
+                            onClick: (e, elements) => {
+                                if (elements.length) {
+                                    const index = elements[0].index;
+                                    const newColors = labels.map(() => '#003883');
+                                    newColors[index] = '#7da7e0';
+                                    
+                                    chartInstance.data.datasets[0].backgroundColor = newColors;
+                                    chartInstance.update();
+                                    
+                                    alert(`Дата: ${labels[index]}\nКурс: ${values[index]} RUB`);
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>

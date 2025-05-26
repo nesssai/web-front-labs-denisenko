@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Денисенко Александра Юрьевна. Совкомфлот — Видео</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="icons/favicon-16x16.png">
+        <link rel="icon" href="icons/favicon-32x32.png">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+            .video-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            .video-wrapper {
+                position: relative;
+                padding-bottom: 56.25%;
+                height: 0;
+                margin: 20px 0;
+            }
+
+            .video-wrapper iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .video-title {
+                text-align: center;
+                color: #003883;
+                margin-bottom: 30px;
+                font-size: 38px;
+            }
+        </style>
+    </head>
+    <body>
+        <button class="menu-button">☰</button>
+        <nav class="menu-panel">
+            <a href="company.html">О компании</a>
+            <a href="news.html">Новости</a>
+            <a href="exchange.html">Курс валют</a>
+            <a href="contact.html">Контактные данные</a>
+            <a href="video.html">Видео</a>
+        </nav>
+
+        <header>
+            <img src="logo.svg" class="logo">
+        </header>
+
+        <main>
+            <div class="video-container">
+                <h1 class="video-title">Презентационный фильм для компании ОАО «Совкомфлот»</h1>
+                <div class="video-wrapper">
+                    <iframe 
+                    src="https://vk.com/video_ext.php?oid=-227666236&id=456239063&hash=8dd23297ea8514b9" 
+                    width="640" height="360" frameborder="0" allowfullscreen="1" 
+                    allow="autoplay; encrypted-media; fullscreen; picture-in-picture">
+                    </iframe>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <img src="logo.svg" class="logo">
+
+            <div class="social-icons">
+                <a href="https://t.me/sovcomflot">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://vk.com/sovcomflotgroup">
+                    <i class="fab fa-vk"></i>
+                </a>
+            </div>
+        </footer>     
+        
+        <script src="menu.js"></script>
+    </body>
+</html>
