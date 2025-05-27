@@ -19,7 +19,6 @@ header {
 }
 
 main {
-    font-family: 'Fira Sans', sans-serif;
     margin: 90px 20px 20px;
     padding: 25px;
     background: #f7f9fe;
@@ -29,7 +28,6 @@ footer {
     background: #003883;
     color: white;
     padding: 35px;
-    font-style: normal;
     text-align: left;
     font-size: 12pt;
     height: 100px;
@@ -124,7 +122,6 @@ a:active {
     font-weight: bold;
     display: block;
     transition: 0.3s;
-    font-family: 'Fira Sans', sans-serif;
 }
 
 .menu-panel a:hover {
@@ -133,7 +130,6 @@ a:active {
 
 .menu-panel a.active-page {
     color: #bd0007;
-    font-weight: bold;
 }
 
 .to-top {
@@ -144,7 +140,7 @@ a:active {
   display: block;
   width: 60px;
   height: 60px;
-  line-height: 55px;
+  line-height: 65px;
   text-align: center;
   background: #9db7da;
   color: white;
