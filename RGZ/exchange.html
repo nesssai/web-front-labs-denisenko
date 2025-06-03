@@ -217,7 +217,7 @@
                         if (label === todayLabel) {
                             return formatNumber(tnbRate);  // без колебаний
                         } else {
-                            const fluctuation = (Math.random() - 0.5) * 2;
+                            const fluctuation = (Math.random() - 0.5);
                             return formatNumber(tnbRate + fluctuation);
                         }
                     });
